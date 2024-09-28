@@ -1,6 +1,8 @@
 module github.com/Dominic-Kaemereit/user-management-service
 
-go 1.21.0
+go 1.21
+
+toolchain go1.23.0
 
 require (
 	github.com/bytedance/sonic v1.12.3 // indirect
