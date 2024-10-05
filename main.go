@@ -10,8 +10,9 @@ func main() {
 	router := gin.Default()
 
 	// define the routes
-	router.PUT("/user", controller.CreateUser)
-	router.GET("/user", controller.FindUserWithNameOrEmail)
+	router.PUT("/user", controller.PostCreateUser)
+	router.GET("/user", controller.GetFindUserWithNameOrEmail)
+	router.GET("/user/login", controller.GetUserLogin)
 	router.GET("/users", controller.GetAListFromAllUser)
 
 	// run the server
