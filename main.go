@@ -16,5 +16,9 @@ func main() {
 	router.GET("/users", controller.GetAListFromAllUser)
 
 	// run the server
-	router.Run("127.0.0.1:8080")
+	err := router.Run("127.0.0.1:8080")
+
+	if err != nil {
+		panic(err)
+	}
 }

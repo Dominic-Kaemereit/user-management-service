@@ -24,15 +24,14 @@ If the request is invalid, it will return a 400 status code.
 If the user was created successfully, it will return a 201 status code.
 */
 func PostCreateUser(c *gin.Context) {
-	var user entity.User
 	var userCreation entity.UserCreation
 
-	if error := c.BindJSON(&userCreation); error != nil {
+	if err := c.BindJSON(&userCreation); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"message": "Invalid request"})
 		return
 	}
 
-	user, err := userCreation.MapToUser()
+	var user, err = userCreation.MapToUser()
 
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"message": err.Error})
@@ -59,8 +58,8 @@ If the user was not found, it will return a 404 status code.
 */
 func GetFindUserWithNameOrEmail(c *gin.Context) {
 	var findUser FindUser
-	if error := c.BindJSON(&findUser); error != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"message": "Invalid request" + error.Error()})
+	if err := c.BindJSON(&findUser); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"message": "Invalid request" + err.Error()})
 		return
 	}
 
@@ -76,8 +75,8 @@ func GetFindUserWithNameOrEmail(c *gin.Context) {
 
 func GetUserLogin(c *gin.Context) {
 	var userLogin UserLogin
-	if error := c.BindJSON(&userLogin); error != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"message": "Invalid request" + error.Error()})
+	if err := c.BindJSON(&userLogin); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"message": "Invalid request" + err.Error()})
 		return
 	}
 
